@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: orderservice
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: orderservice
+    spec:
+      containers:
+      - name: orderservice
+        image: sibendudas/orderservice
+        ports:
+        - containerPort: 8080
+          name: svc-port
+          protocol: TCP
+        env:
+        - name: ACTIVEMQ_BROKER_URL
+          value: "tcp://activemq.ecomm1.svc.cluster.local:61616"
+        - name: PRODUCT_SERVICE_URL
+          value: "http://productservice.ecomm1.svc.cluster.local:8082/product/"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: orderservice
+spec:
+  clusterIP: None
+  ports:
+  - name: svc-port
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: orderservice
