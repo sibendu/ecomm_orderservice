@@ -103,7 +103,7 @@ public class OrderServiceController {
 		java.util.Random r = new java.util.Random();
 		int result = r.nextInt(100000);
 		
-		String id = "ORD#"+result;
+		String id = "PILORD#"+result;
 		order.setId(id);
 		System.out.println("Order processed. Order# = "+id+"  "+order.toString());
 //		System.out.println("No of items: "+order.getItems().size());
