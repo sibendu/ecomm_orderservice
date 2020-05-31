@@ -21,6 +21,8 @@ spec:
           value: "tcp://activemq.ecomm1.svc.cluster.local:61616"
         - name: PRODUCT_SERVICE_URL
           value: "http://productservice.ecomm1.svc.cluster.local:8082/product/"
+        - name: MYSQL_HOST
+          value: "mysql"          
 ---
 kind: Service
 apiVersion: v1
